@@ -2,18 +2,24 @@
 import express from 'express';
 const app = express();
 const port = 3000;
-app.get('/',(req,res)=>{
+app.post('/',(req,res)=>{
     res.send("<h1>Welcome to Express</h1>");
 });
+app.use(express.json());
 
-app.get('/api/:name/:rollno',(req,res)=>{
-    try{
-const { name, rollno} = req.params;
-res.send(`Welcome ${name} and your roll no. is: ${rollno}`)
-    } catch(error){
-        console.log(`Error is: ${error.message}`);
-    }
-})
+app.post('/users',(req,res) =>{
+    const data = req.body;
+    res.send(`My name is ${data.name}`)
+});
+
+// app.get('/api/:name/:rollno',(req,res)=>{
+//     try{
+// const { name, rollno} = req.params;
+// res.send(`Welcome ${name} and your roll no. is: ${rollno}`)
+//     } catch(error){
+//         console.log(`Error is: ${error.message}`);
+//     }
+// })
 // app.get('/api',(req,res)=>{
 //     const {name,rollno} = req.query;
 //     res.send(Welcome to abes: ${name} and Roll no. id ${rollno});
